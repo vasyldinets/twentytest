@@ -6,12 +6,13 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
-define( 'US_URL', get_template_directory_uri() );
+define( 'ROOT_ELEMENT_ID', 'twenty-product-settings' );
 
 $theme_includes = array(
 	'/hooks.php',                			// Load Custom Hooks.
 	'/custom-post-type.php',                // Load Custom Post Types.
-	'/custom-taxonomy.php',                // Load Custom Taxonomy.
+	'/custom-taxonomy.php',                // Load Custom Taxonomies.
+	'/settings-page.php',                // Load Settings Pages.
 );
 
 foreach ( $theme_includes as $file ) {
