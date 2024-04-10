@@ -1,8 +1,7 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from '@wordpress/element';
 import {
-  Card,
-  CardHeader,
   Flex,
   FlexBlock,
   Button,
@@ -13,31 +12,39 @@ import {
 import productService from '../../services/productService';
 import { Product } from '../../models/interfaces/product';
 import styled from 'styled-components';
+import ConfirmModal from '../ConfirmModal';
 
-const ProductList = (): JSX.Element | null => {
+
+const ProductList: React.FC = () => {
   const [productList, setProductList] = useState<Product[]>([]);
+  const [showModal, setShowModal] = useState(false);
+  const [productForDelete, setProductForDelete] = useState<Product | undefined>();
+  
   useEffect(() => {
     productService.getProductList().then((products) => {
       setProductList(products);
     });
   }, []);
   
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+  
+  const deleteProduct = async () => {
+    if (productForDelete) {
+      await productService.deleteProduct(productForDelete.id);
+      setProductList(productList.filter(product => product.id !== productForDelete.id));
+    }
+    toggleModal();
+  };
+  
+  const btnDeleteClick = (product: Product) => () => {
+    setProductForDelete(product);
+    toggleModal()
+  }
+  
   return (
-    <StyledCard>
-      <CardHeader>
-        <Flex>
-          <FlexBlock>
-            <h2>Product list</h2>
-          </FlexBlock>
-          <FlexItem>
-            <Button variant="link">
-              <Link to="/create">
-                Create new product
-              </Link>
-            </Button>
-          </FlexItem>
-        </Flex>
-      </CardHeader>
+    <>
       {productList?.map((product) => (
         <div key={`product-${product.id}`}>
           <CardBody>
@@ -59,6 +66,7 @@ const ProductList = (): JSX.Element | null => {
                       margin: '0 4px'
                     }}
                     isDestructive
+                    onClick={btnDeleteClick(product)}
                   >
                     Delete
                   </Button>
@@ -69,18 +77,21 @@ const ProductList = (): JSX.Element | null => {
               </FlexItem>
             </Flex>
           </CardBody>
-          <CardDivider />
+          <CardDivider/>
         </div>
       ))}
-    </StyledCard>
+      <ConfirmModal
+        showModal={showModal}
+        productTitle={productForDelete?.title.rendered}
+        toggleModal={toggleModal}
+        deleteProduct={deleteProduct}
+      />
+    </>
   );
-};
+}
 
-const StyledCard = styled(Card)`
-    margin-top: 20px;
-    margin-right: 20px;
-`;
 const StyledTitle = styled.h4`
     padding-left: 15px;
-`
+`;
+
 export default ProductList;
