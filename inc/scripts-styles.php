@@ -19,3 +19,10 @@ if ( ! function_exists( 'load_admin_scripts' ) ) {
 	}
 	add_action( 'admin_enqueue_scripts', 'load_admin_scripts' );
 }
+
+if ( ! function_exists('load_admin_styles') ) {
+  function load_admin_styles() {
+    wp_enqueue_style('wp-components');
+  }
+  add_action( 'admin_print_styles', 'load_admin_styles' );
+}

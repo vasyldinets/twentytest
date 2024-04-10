@@ -2,6 +2,7 @@
   "name": "twenty-products-settings",
   "version": "1.0.0",
   "description": "Test WP-React Task",
+  "private": true,
   "scripts": {
     "build": "wp-scripts build",
     "start": "env-cmd wp-scripts start"
@@ -20,6 +21,8 @@
     "@wordpress/api-fetch": "^6.52.0",
     "@wordpress/components": "^27.3.0",
     "@wordpress/element": "^5.32.0",
-    "react-router-dom": "^6.22.3"
+    "@wordpress/url": "^3.56.0",
+    "react-router-dom": "^6.22.3",
+    "styled-components": "^6.1.8"
   }
 }

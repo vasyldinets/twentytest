@@ -4,7 +4,7 @@ import MainRouter from './routes/MainRouter';
 const App = (): JSX.Element => {
   return (
     <MainRouter/>
-  )
-}
+  );
+};
 
 export default App;

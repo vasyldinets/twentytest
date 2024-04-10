@@ -12,10 +12,10 @@ define( 'TCHILD_PATH', get_stylesheet_directory() );
 
 $theme_includes = array(
 	'/hooks.php',                			// Load Custom Hooks.
-	'/custom-post-type.php',                // Load Custom Post Types.
-	'/custom-taxonomy.php',                 // Load Custom Taxonomies.
-	'/settings-page.php',                   // Load Settings Pages.
-	'/scripts-styles.php',                  // Load Script/Styles handler.
+	'/custom-taxonomy.php',           // Load Custom Taxonomies.
+	'/custom-post-type.php',          // Load Custom Post Types.
+	'/settings-page.php',             // Load Settings Pages.
+	'/scripts-styles.php',            // Load Script/Styles handler.
 );
 
 foreach ( $theme_includes as $file ) {

@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'create_taxonomy' ) ) {
   function create_taxonomy() {
-    register_taxonomy( 'categories', array('products'), array(
+    register_taxonomy( 'category', array('product'), array(
   		'label' => __( 'Categories', 'twenty-twenty-child' ),
   		'labels' => array(
     		'name' => __( 'Categories', 'twenty-twenty-child' ),
@@ -16,7 +16,8 @@ if ( ! function_exists( 'create_taxonomy' ) ) {
   		),
   		'show_ui' => true, //for development, will be disabled
   		'show_in_rest' => true,
-  		'show_admin_column' => true,
+      'query_var' => true,
+      'show_admin_column' => true,
     ));
   }
 
