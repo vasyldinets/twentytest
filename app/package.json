@@ -1,0 +1,25 @@
+{
+  "name": "twenty-products-settings",
+  "version": "1.0.0",
+  "description": "Test WP-React Task",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "env-cmd wp-scripts start"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@wordpress/scripts": "^25.4.0",
+    "browser-sync": "^3.0.2",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "env-cmd": "^10.1.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.52.0",
+    "@wordpress/components": "^27.3.0",
+    "@wordpress/element": "^5.32.0",
+    "react-router-dom": "^6.22.3"
+  }
+}

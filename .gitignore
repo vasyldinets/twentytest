@@ -1,0 +1,5 @@
+/.idea/
+/app/node_modules/
+/app/yarn.lock
+/app/public/
+/app/.env
