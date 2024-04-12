@@ -1,23 +1,33 @@
 import apiFetch from '@wordpress/api-fetch';
-import { addQueryArgs } from '@wordpress/url';
-import { Product } from '../models/interfaces/product';
+import { PostProduct, Product } from '../models/interfaces/product';
 
 const getProductList = async ():Promise<Product[]> => {
-  const queryParams = {
-    _embed: 1,
-  };
-  
   // Will be better to use pagination, but skip it for the test task
-  return await apiFetch<Product[]>( { path: addQueryArgs( '/wp/v2/product', queryParams ) } );
+  return await apiFetch<Product[]>( { path:  '/wp/v2/product?_embed=1'} );
 }
 
-const deleteProduct = async (id: number): Promise<any> => {
-  return await apiFetch({ path: `/wp/v2/product/${id}`, method: 'DELETE' })
+const getProduct = async (id: number): Promise<Product> => {
+  return await apiFetch({ path: `/wp/v2/product/${id}?context=edit` })
+}
+
+const deleteProduct = async (id: number): Promise<void> => {
+  await apiFetch({ path: `/wp/v2/product/${id}`, method: 'DELETE' })
+}
+
+const updateProduct = async (id: number, data: PostProduct): Promise<Product> => {
+  return await apiFetch({ path: `/wp/v2/product/${id}`, method: 'POST', data })
+}
+
+const createProduct = async (data: PostProduct): Promise<Product> => {
+  return await apiFetch({ path: '/wp/v2/product', method: 'POST', data })
 }
 
 const productService = {
   getProductList,
-  deleteProduct
+  getProduct,
+  deleteProduct,
+  updateProduct,
+  createProduct
 }
 
 export default productService;

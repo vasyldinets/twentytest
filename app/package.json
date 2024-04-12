@@ -15,14 +15,13 @@
     "browser-sync-webpack-plugin": "^2.3.0",
     "env-cmd": "^10.1.0",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.4",
+    "wp-types": "^3.65.0"
   },
   "dependencies": {
     "@wordpress/api-fetch": "^6.52.0",
     "@wordpress/components": "^27.3.0",
     "@wordpress/element": "^5.32.0",
-    "@wordpress/url": "^3.56.0",
-    "react-router-dom": "^6.22.3",
-    "styled-components": "^6.1.8"
+    "react-router-dom": "^6.22.3"
   }
 }

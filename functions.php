@@ -14,6 +14,7 @@ $theme_includes = array(
 	'/hooks.php',                			// Load Custom Hooks.
 	'/custom-taxonomy.php',           // Load Custom Taxonomies.
 	'/custom-post-type.php',          // Load Custom Post Types.
+	'/custom-post-meta.php',          // Load Custom Post Meta.
 	'/settings-page.php',             // Load Settings Pages.
 	'/scripts-styles.php',            // Load Script/Styles handler.
 );

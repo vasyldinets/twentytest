@@ -1,15 +1,14 @@
 import React from 'react';
 import { Card, CardHeader, Flex, FlexBlock, FlexItem } from '@wordpress/components';
-import styled from 'styled-components';
 
 interface ICardLayout {
   title: string;
-  button: React.ReactNode;
   children: React.ReactNode;
+  button?: React.ReactNode;
 }
 
 const CardLayout: React.FC<ICardLayout> = ({title, button, children}) => (
-  <StyledCard>
+  <Card style={{ margin: '20px 20px 0 0' }}>
     <CardHeader>
       <Flex>
         <FlexBlock>
@@ -21,12 +20,7 @@ const CardLayout: React.FC<ICardLayout> = ({title, button, children}) => (
       </Flex>
     </CardHeader>
     {children}
-  </StyledCard>
+  </Card>
 );
-
-const StyledCard = styled(Card)`
-    margin-top: 20px;
-    margin-right: 20px;
-`;
 
 export default CardLayout;

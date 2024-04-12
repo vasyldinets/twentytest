@@ -11,7 +11,6 @@ import {
 } from '@wordpress/components';
 import productService from '../../services/productService';
 import { Product } from '../../models/interfaces/product';
-import styled from 'styled-components';
 import ConfirmModal from '../ConfirmModal';
 
 
@@ -23,7 +22,7 @@ const ProductList: React.FC = () => {
   useEffect(() => {
     productService.getProductList().then((products) => {
       setProductList(products);
-    });
+    }).catch((e) => console.error(e));
   }, []);
   
   const toggleModal = () => {
@@ -32,8 +31,12 @@ const ProductList: React.FC = () => {
   
   const deleteProduct = async () => {
     if (productForDelete) {
-      await productService.deleteProduct(productForDelete.id);
-      setProductList(productList.filter(product => product.id !== productForDelete.id));
+      try {
+        await productService.deleteProduct(productForDelete.id);
+        setProductList(productList.filter(product => product.id !== productForDelete.id));
+      } catch (e) {
+        console.error(e);
+      }
     }
     toggleModal();
   };
@@ -49,15 +52,20 @@ const ProductList: React.FC = () => {
         <div key={`product-${product.id}`}>
           <CardBody>
             <Flex>
-              <FlexItem>
-                <img
-                  src={product._embedded['wp:featuredmedia'][0].source_url}
-                  alt={product.title.rendered}
-                  width={50}
-                />
+              <FlexItem style={{width: '50px'}}>
+                {product._embedded?.['wp:featuredmedia'] && (
+                  <img
+                    // @ts-expect-error - typed as  unknown
+                    src={product._embedded?.['wp:featuredmedia'][0].source_url}
+                    alt={product.title.rendered}
+                    width={50}
+                  />
+                )}
               </FlexItem>
               <FlexBlock>
-                <StyledTitle>{product.title.rendered}</StyledTitle>
+                <h4 style={{ paddingLeft: '15px' }}>
+                  {product.title.rendered}
+                </h4>
               </FlexBlock>
               <FlexItem>
                 <Flex>
@@ -89,9 +97,5 @@ const ProductList: React.FC = () => {
     </>
   );
 }
-
-const StyledTitle = styled.h4`
-    padding-left: 15px;
-`;
 
 export default ProductList;

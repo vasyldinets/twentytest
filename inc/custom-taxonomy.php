@@ -17,6 +17,7 @@ if ( ! function_exists( 'create_taxonomy' ) ) {
   		'show_ui' => true, //for development, will be disabled
   		'show_in_rest' => true,
       'query_var' => true,
+      'hierarchical' => true,
       'show_admin_column' => true,
     ));
   }
