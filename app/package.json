@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "devDependencies": {
-    "@wordpress/scripts": "^25.4.0",
+    "@wordpress/scripts": "^27.6.0",
     "browser-sync": "^3.0.2",
     "browser-sync-webpack-plugin": "^2.3.0",
     "env-cmd": "^10.1.0",

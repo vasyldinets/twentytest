@@ -1,5 +1,6 @@
 /.idea/
 /app/node_modules/
 /app/yarn.lock
+/app/package-lock.json
 /app/public/
 /app/.env
